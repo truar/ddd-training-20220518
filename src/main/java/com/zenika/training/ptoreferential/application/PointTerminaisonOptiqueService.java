@@ -9,7 +9,9 @@ import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTe
 import java.time.Clock;
 import java.time.LocalDateTime;
 
-public record PointTerminaisonOptiqueService(PointTerminaisonOptiqueRepository repository, Clock clock, EventPublisher publisher) {
+public record PointTerminaisonOptiqueService(PointTerminaisonOptiqueRepository repository,
+                                             Clock clock,
+                                             EventPublisher publisher) {
 
     public PointTerminaisonOptiqueId louerUnPto(String ptoOiId, LocalDateTime dateLocation, String idContrat) {
         var id = repository.nextIdentity();
@@ -24,5 +26,9 @@ public record PointTerminaisonOptiqueService(PointTerminaisonOptiqueRepository r
         var pointTerminaisonOptique = repository.byId(id).orElseThrow();
         pointTerminaisonOptique.mettreEnService(dateMiseEnService, idContrat);
         repository.save(pointTerminaisonOptique);
+    }
+
+    public PointTerminaisonOptique getPto(PointTerminaisonOptiqueId id) {
+        return repository.byId(id).orElseThrow();
     }
 }

@@ -3,26 +3,25 @@ package com.zenika.training.ptoreferential.infrastructure.persistence.pointtermi
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTerminaisonOptique;
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTerminaisonOptiqueId;
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTerminaisonOptiqueRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class InMemoryPointTerminaisonOptiqueRepository implements PointTerminaisonOptiqueRepository {
-
-    private Map<PointTerminaisonOptiqueId, PointTerminaisonOptique> db = new HashMap<>();
+@Profile("mongo")
+public record MongoPointTerminaisonOptiqueRepository(
+        MongoPointTerminaisonOptiqueDAO dao) implements PointTerminaisonOptiqueRepository {
 
     @Override
     public Optional<PointTerminaisonOptique> byId(PointTerminaisonOptiqueId id) {
-        return Optional.ofNullable(db.get(id));
+        return dao.findById(id);
     }
 
     @Override
     public void save(PointTerminaisonOptique pto) {
-        db.put(pto.getId(), pto);
+        dao.save(pto);
     }
 
     @Override

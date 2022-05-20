@@ -2,7 +2,7 @@ package com.zenika.training.ptoreferential.application;
 
 import com.zenika.training.ptoreferential.domain.DomainEvent;
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.*;
-import com.zenika.training.ptoreferential.infrastructure.InMemoryQueueEventPublisher;
+import com.zenika.training.ptoreferential.infrastructure.messaging.InMemoryQueueEventPublisher;
 import com.zenika.training.ptoreferential.infrastructure.persistence.pointterminaisonoptique.InMemoryPointTerminaisonOptiqueRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
