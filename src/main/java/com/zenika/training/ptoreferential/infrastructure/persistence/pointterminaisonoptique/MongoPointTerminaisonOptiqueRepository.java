@@ -11,8 +11,13 @@ import java.util.UUID;
 
 @Repository
 @Profile("mongo")
-public record MongoPointTerminaisonOptiqueRepository(
-        MongoPointTerminaisonOptiqueDAO dao) implements PointTerminaisonOptiqueRepository {
+public class MongoPointTerminaisonOptiqueRepository implements PointTerminaisonOptiqueRepository {
+
+    private final MongoPointTerminaisonOptiqueDAO dao;
+
+    public MongoPointTerminaisonOptiqueRepository(MongoPointTerminaisonOptiqueDAO dao) {
+        this.dao = dao;
+    }
 
     @Override
     public Optional<PointTerminaisonOptique> byId(PointTerminaisonOptiqueId id) {

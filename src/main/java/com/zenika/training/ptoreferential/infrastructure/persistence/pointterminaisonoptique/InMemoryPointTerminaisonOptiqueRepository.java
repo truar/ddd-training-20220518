@@ -3,6 +3,7 @@ package com.zenika.training.ptoreferential.infrastructure.persistence.pointtermi
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTerminaisonOptique;
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTerminaisonOptiqueId;
 import com.zenika.training.ptoreferential.domain.pointterminaisonoptique.PointTerminaisonOptiqueRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
+@Profile("inmemory")
 public class InMemoryPointTerminaisonOptiqueRepository implements PointTerminaisonOptiqueRepository {
 
     private Map<PointTerminaisonOptiqueId, PointTerminaisonOptique> db = new HashMap<>();

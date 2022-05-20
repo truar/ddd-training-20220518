@@ -14,6 +14,7 @@ public class PtoLoueRabbitEventHandler {
     @RabbitListener(queues = "ptoLoue")
     public void handlePtoLoue(PtoLoue event) {
         // service.todo(event.attribute...);
+        System.out.println("RabbitMQ");
         System.out.println("event = " + event);
     }
 }
